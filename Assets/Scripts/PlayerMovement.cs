@@ -72,7 +72,7 @@ public class PlayerMovement : MonoBehaviour
     }
 
     [SerializeField]
-    int maxBulletCapacity = 100;
+    int maxBulletCapacity = 90;
     public int MaxBulletCapacity
     {
         get { return maxBulletCapacity; }
@@ -108,7 +108,11 @@ public class PlayerMovement : MonoBehaviour
             bigger3 = new Vector3(0.9f, 0.9f, 0.9f),
             bigger4 = new Vector3(1f, 0.9f, 1f),
             bigger5 = new Vector3(1.1f, 0.9f, 1.1f),
-            bigger6 = new Vector3(1.2f, 0.9f, 1.2f);
+            bigger6 = new Vector3(1.2f, 0.9f, 1.2f),
+            bigger7 = new Vector3(1.3f, 0.9f, 1.3f),
+            bigger8 = new Vector3(1.4f, 0.9f, 1.4f),
+            bigger9 = new Vector3(1.5f, 0.9f, 1.5f),
+            bigger10 = new Vector3(1.6f, 0.9f, 1.6f);
 
     private void Start()
     {
@@ -165,7 +169,6 @@ public class PlayerMovement : MonoBehaviour
 
     private void Fire()
     {
-
         if (Input.GetKeyDown(KeyCode.Tab))
         {
             firingCoroutine = StartCoroutine(FireContinously());
@@ -183,15 +186,13 @@ public class PlayerMovement : MonoBehaviour
     {
         while (RemainingBullet > 0)
         {
-
-                GameObject createdBullet = Instantiate(bullet, transform.GetChild(0).position, transform.GetChild(0).rotation);
-                createdBullet.transform.Rotate(Vector3.left * 90);
-                Rigidbody bulletRb = createdBullet.GetComponent<Rigidbody>();
-                bulletRb.AddForce(Vector3.forward * 30, ForceMode.Impulse);
-                RemainingBullet--;
-                yield return new WaitForSeconds(0.01f);
+            GameObject createdBullet = Instantiate(bullet, transform.GetChild(0).position, transform.GetChild(0).rotation);
+            createdBullet.transform.Rotate(Vector3.left * 90);
+            Rigidbody bulletRb = createdBullet.GetComponent<Rigidbody>();
+            bulletRb.AddForce(Vector3.forward * 40, ForceMode.Impulse);
+            RemainingBullet--;
+            yield return new WaitForSeconds(0.05f);
         }
-
     }
 
     private void AdjustSize()
@@ -208,21 +209,37 @@ public class PlayerMovement : MonoBehaviour
         {
             bottleSize = bigger2;
         }
-        else if (RemainingBullet > 20 && RemainingBullet <= 35)
+        else if (RemainingBullet > 20 && RemainingBullet <= 30)
         {
             bottleSize = bigger3;
         }
-        else if (RemainingBullet > 35 && RemainingBullet <= 60)
+        else if (RemainingBullet > 30 && RemainingBullet <= 40)
         {
             bottleSize = bigger4;
         }
-        else if (RemainingBullet > 60 && RemainingBullet <= 85)
+        else if (RemainingBullet > 40 && RemainingBullet <= 50)
         {
             bottleSize = bigger5;
         }
-        else
+        else if (RemainingBullet > 50 && RemainingBullet <= 60)
         {
             bottleSize = bigger6;
+        }
+        else if (RemainingBullet > 60 && RemainingBullet <= 70)
+        {
+            bottleSize = bigger7;
+        }
+        else if (RemainingBullet > 70 && RemainingBullet <= 80)
+        {
+            bottleSize = bigger8;
+        }
+        else if (RemainingBullet > 80 && RemainingBullet <= 90)
+        {
+            bottleSize = bigger9;
+        }
+        else
+        {
+            bottleSize = bigger10;
         }
         gameObject.transform.GetChild(1).GetChild(0).localScale = bottleSize;
     }
@@ -262,9 +279,9 @@ public class PlayerMovement : MonoBehaviour
         //    isGrounded = false;
         //}
     }
-    public void IncreaseBulletBy50()
+    public void IncreaseBulletBy10()
     {
-        RemainingBullet += 50;
+        RemainingBullet += 10;
         if (RemainingBullet > MaxBulletCapacity)
         {
             RemainingBullet = MaxBulletCapacity;

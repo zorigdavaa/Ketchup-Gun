@@ -19,12 +19,7 @@ public class GroundSpawner : MonoBehaviour
         {
             if (i < 3)
             {
-                // First 3 tile without stuff on it
-                if (i == 1)
-                {
-                    spawnTIle(1);
-                }
-                spawnTIle(0);
+                spawnTIle(1);
             }
             else
             {

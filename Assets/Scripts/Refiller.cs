@@ -8,7 +8,7 @@ public class Refiller : MonoBehaviour
     {
         if (other.gameObject.tag == "Player")
         {
-            other.gameObject.GetComponent<PlayerMovement>().IncreaseBulletBy50();
+            other.gameObject.GetComponent<PlayerMovement>().IncreaseBulletBy10();
             
             Destroy(gameObject);
         }
